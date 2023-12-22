@@ -1,0 +1,15 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /template/api
+
+spring:
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      location: /file
+      max-file-size: 10MB
+      max-request-size: 10MB
