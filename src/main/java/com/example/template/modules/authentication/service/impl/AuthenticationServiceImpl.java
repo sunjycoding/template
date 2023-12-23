@@ -36,7 +36,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         try {
             authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         } catch (Exception e) {
-            throw new RuntimeException("登录失败", e);
+            throw new RuntimeException("登录失败, 用户名或密码错误", e);
         }
         log.info("用户{}登录成功", username);
         SecurityContextHolder.getContext().setAuthentication(authentication);

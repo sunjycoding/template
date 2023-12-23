@@ -1,10 +1,9 @@
 package com.example.template.modules.user.service;
 
-import com.example.template.modules.user.dto.UserCreateDTO;
+import com.example.template.common.data.Pagination;
+import com.example.template.common.data.PaginationRequest;
 import com.example.template.modules.user.dto.UserCriteriaDTO;
 import com.example.template.modules.user.dto.UserDTO;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -13,13 +12,13 @@ import java.util.List;
  */
 public interface UserService {
 
-    Page<UserDTO> page(Pageable pageable, UserCriteriaDTO userCriteriaDTO);
+    Pagination<UserDTO> page(PaginationRequest paginationRequest, UserCriteriaDTO userCriteriaDTO);
 
     List<UserDTO> list();
 
     UserDTO get(String id);
 
-    void create(UserCreateDTO userCreateDTO);
+    void create(UserDTO userDTO);
 
     void update(UserDTO userDTO);
 

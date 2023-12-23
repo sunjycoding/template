@@ -1,15 +1,11 @@
 package com.example.template.modules.user.controller;
 
 import com.example.template.common.data.HttpResult;
-import com.example.template.modules.user.dto.UserCreateDTO;
+import com.example.template.common.data.PaginationRequest;
 import com.example.template.modules.user.dto.UserCriteriaDTO;
 import com.example.template.modules.user.dto.UserDTO;
-import com.example.template.modules.user.model.User;
 import com.example.template.modules.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,8 +28,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("page")
-    public HttpResult page(Pageable pageable, UserCriteriaDTO userCriteriaDTO) {
-        return HttpResult.success(userService.page(pageable, userCriteriaDTO));
+    public HttpResult page(PaginationRequest paginationRequest, UserCriteriaDTO userCriteriaDTO) {
+        return HttpResult.success(userService.page(paginationRequest, userCriteriaDTO));
     }
 
     @GetMapping
@@ -47,8 +43,8 @@ public class UserController {
     }
 
     @PostMapping
-    public HttpResult create(@RequestBody UserCreateDTO userCreateDTO) {
-        userService.create(userCreateDTO);
+    public HttpResult create(@RequestBody UserDTO userDTO) {
+        userService.create(userDTO);
         return HttpResult.success();
     }
 

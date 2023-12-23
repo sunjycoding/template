@@ -16,10 +16,10 @@ import lombok.EqualsAndHashCode;
 @Table(name = "tb_user")
 public class User extends BaseEntity {
 
-    @Column(unique = true)
+    @Column(unique = true, updatable = false)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private String password;
 
     @Column(nullable = false)
