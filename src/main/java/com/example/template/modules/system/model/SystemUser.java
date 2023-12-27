@@ -1,4 +1,4 @@
-package com.example.template.modules.user.model;
+package com.example.template.modules.system.model;
 
 import com.example.template.common.data.BaseEntity;
 import jakarta.persistence.Column;
@@ -13,8 +13,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "tb_user")
-public class User extends BaseEntity {
+@Table(name = "tb_system_user")
+public class SystemUser extends BaseEntity {
 
     @Column(unique = true, updatable = false)
     private String username;
@@ -26,6 +26,12 @@ public class User extends BaseEntity {
     private String name;
 
     @Column
-    private String avatarUrl;
+    private String gender;
+
+    @Column
+    private String phone;
+
+    @Column(nullable = false)
+    private Boolean enabled;
 
 }

@@ -1,4 +1,4 @@
-package com.example.template.modules.user.dto;
+package com.example.template.modules.system.dto;
 
 import com.example.template.common.data.BaseDTO;
 import lombok.Data;
@@ -9,13 +9,21 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class UserDTO extends BaseDTO {
+public class SystemUserDTO extends BaseDTO {
 
     private String username;
 
     private String name;
 
-    private String avatarUrl;
+    private String gender;
+
+    private String genderValue;
+
+    private String phone;
+
+    private Boolean enabled;
+
+    private String statusValue;
 
     private String token;
 

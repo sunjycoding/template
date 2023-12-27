@@ -6,7 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.template.common.util.DateUtils;
 import com.example.template.modules.authentication.service.TokenService;
-import com.example.template.modules.user.dto.UserDTO;
+import com.example.template.modules.system.dto.SystemUserDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,16 +28,16 @@ public class TokenServiceImpl implements TokenService {
     private static final String USERNAME_CLAIM_KEY = "username";
 
     @Override
-    public String createToken(UserDTO userDTO) {
+    public String createToken(SystemUserDTO systemUserDTO) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime expiredTime = now.plusDays(1);
         Algorithm algorithm = Algorithm.HMAC256(SECRET);
         return JWT.create()
                 .withIssuer(ISSUER)
                 .withIssuedAt(DateUtils.localDateTimeToDate(now))
-                .withSubject(userDTO.getId())
+                .withSubject(systemUserDTO.getId())
                 .withExpiresAt(DateUtils.localDateTimeToDate(expiredTime))
-                .withClaim(USERNAME_CLAIM_KEY, userDTO.getUsername())
+                .withClaim(USERNAME_CLAIM_KEY, systemUserDTO.getUsername())
                 .sign(algorithm);
     }
 

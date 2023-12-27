@@ -1,4 +1,4 @@
-package com.example.template.modules.user.dto;
+package com.example.template.modules.system.dto;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
  * @author created by sunjy on 12/21/23
  */
 @Data
-public class UserCriteriaDTO {
+public class SystemUserCriteriaDTO {
 
     private String name;
 

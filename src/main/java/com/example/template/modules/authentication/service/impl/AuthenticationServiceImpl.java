@@ -3,7 +3,7 @@ package com.example.template.modules.authentication.service.impl;
 import com.example.template.modules.authentication.dto.AuthenticationDTO;
 import com.example.template.modules.authentication.service.AuthenticationService;
 import com.example.template.modules.authentication.service.TokenService;
-import com.example.template.modules.user.dto.UserDTO;
+import com.example.template.modules.system.dto.SystemUserDTO;
 import com.example.template.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final TokenService tokenService;
 
     @Override
-    public UserDTO login(AuthenticationDTO authenticationDTO) {
+    public SystemUserDTO login(AuthenticationDTO authenticationDTO) {
         String username = authenticationDTO.getUsername();
         String password = authenticationDTO.getPassword();
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
@@ -38,14 +38,17 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         } catch (Exception e) {
             throw new RuntimeException("登录失败, 用户名或密码错误", e);
         }
-        log.info("用户{}登录成功", username);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserDTO userDTO = new UserDTO();
+        log.info("用户{}账号密码校验成功", username);
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-        BeanUtils.copyProperties(customUserDetails, userDTO);
-        String token = tokenService.createToken(userDTO);
-        userDTO.setToken(token);
-        return userDTO;
+        if (!customUserDetails.getEnabled()) {
+            throw new RuntimeException("用户账号未激活，请联系管理员");
+        }
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        SystemUserDTO systemUserDTO = new SystemUserDTO();
+        BeanUtils.copyProperties(customUserDetails, systemUserDTO);
+        String token = tokenService.createToken(systemUserDTO);
+        systemUserDTO.setToken(token);
+        return systemUserDTO;
     }
 
     @Override

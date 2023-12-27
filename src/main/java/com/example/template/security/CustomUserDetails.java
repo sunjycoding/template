@@ -14,7 +14,6 @@ import java.util.List;
 @Data
 public class CustomUserDetails implements UserDetails {
 
-
     private String id;
 
     private String username;
@@ -23,7 +22,7 @@ public class CustomUserDetails implements UserDetails {
 
     private String name;
 
-    private String avatarUrl;
+    private Boolean enabled;
 
     private String createdBy;
 

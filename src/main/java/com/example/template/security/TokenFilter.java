@@ -39,10 +39,8 @@ public class TokenFilter extends OncePerRequestFilter {
                 String userId = decodedJwt.getSubject();
                 String username = decodedJwt.getClaim("username").asString();
                 List<SimpleGrantedAuthority> authorities = Collections.emptyList();
-
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(username, null, authorities);
-
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } catch (Exception e) {
                 throw new RuntimeException("认证失败");

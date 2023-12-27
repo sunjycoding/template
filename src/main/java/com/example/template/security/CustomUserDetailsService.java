@@ -1,7 +1,7 @@
 package com.example.template.security;
 
-import com.example.template.modules.user.model.User;
-import com.example.template.modules.user.repository.UserRepository;
+import com.example.template.modules.system.model.SystemUser;
+import com.example.template.modules.system.repository.SystemUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -18,16 +18,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final SystemUserRepository systemUserRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findUserByUsername(username).orElse(null);
-        if (user == null) {
+        SystemUser systemUser = systemUserRepository.findUserByUsername(username).orElse(null);
+        if (systemUser == null) {
             throw new UsernameNotFoundException(username);
         }
         CustomUserDetails customUserDetails = new CustomUserDetails();
-        BeanUtils.copyProperties(user, customUserDetails);
+        BeanUtils.copyProperties(systemUser, customUserDetails);
         return customUserDetails;
     }
 
