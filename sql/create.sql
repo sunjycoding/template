@@ -42,7 +42,7 @@ INSERT INTO db_template.tb_system_menu (id, name, type, parent_id, path, icon, p
 VALUES ('1f0f0f1abf6b486bab39095625049194', '用户管理', 'MENU', 'ac47a48d8721421980f46195a9f889b5', '/system/users',
         'user', 'use:list', 0, 1);
 INSERT INTO db_template.tb_system_menu (id, name, type, parent_id, path, icon, permission_tag, order_num, enabled)
-VALUES ('7f82acb78d6843c5acf01138e1781ad2', '字典管理', 'MENU', 'ac47a48d8721421980f46195a9f889b5', '/system/dict',
+VALUES ('7f82acb78d6843c5acf01138e1781ad2', '字典管理', 'MENU', 'ac47a48d8721421980f46195a9f889b5', '/system/dicts',
         'data-analysis', 'dict:list', 1, 1);
 INSERT INTO db_template.tb_system_menu (id, name, type, parent_id, path, icon, permission_tag, order_num, enabled)
 VALUES ('df88ca2093814d3a89f9a37eeb500cbb', '菜单管理', 'DIRECTORY', 'ac47a48d8721421980f46195a9f889b5',
@@ -54,5 +54,8 @@ INSERT INTO db_template.tb_system_menu (id, name, type, parent_id, path, icon, p
 VALUES ('4e80040cc4664316b79ba29814c748bf', '部门管理', 'MENU', 'ac47a48d8721421980f46195a9f889b5',
         '/system/departments', 'office-building', 'departments:list', 4, 1);
 INSERT INTO db_template.tb_system_menu (id, name, type, parent_id, path, icon, permission_tag, order_num, enabled)
-VALUES ('120773d011ea4215a3c674bb57c808fd', '岗位管理', 'MENU', 'ac47a48d8721421980f46195a9f889b5', '/system/position',
+VALUES ('120773d011ea4215a3c674bb57c808fd', '岗位管理', 'MENU', 'ac47a48d8721421980f46195a9f889b5', '/system/positions',
         'management', 'position:list', 5, 1);
+INSERT INTO db_template.tb_system_menu (id, name, type, parent_id, path, icon, permission_tag, order_num, enabled)
+VALUES ('360473d295f649438744c1f499026472', '代码生成', 'MENU', 'ac47a48d8721421980f46195a9f889b5', '/system/codegen',
+        'printer', null, 100, 1);
