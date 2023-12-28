@@ -55,12 +55,12 @@ public class SystemUserServiceImpl implements SystemUserService {
 
     @Override
     public SystemUserDTO get(String id) {
-        return null;
+        return convertToDto(systemUserRepository.findById(id).orElse(null));
     }
 
     @Override
     public SystemUserDTO getByUsername(String username) {
-        SystemUser systemUser = systemUserRepository.findUserByUsername(username).orElse(null);
+        SystemUser systemUser = systemUserRepository.findSystemUserByUsername(username).orElse(null);
         return convertToDto(systemUser);
     }
 
@@ -68,7 +68,7 @@ public class SystemUserServiceImpl implements SystemUserService {
     @Override
     public void create(SystemUserDTO systemUserDTO) {
         String username = systemUserDTO.getUsername();
-        SystemUser selectedSystemUser = systemUserRepository.findUserByUsername(username).orElse(null);
+        SystemUser selectedSystemUser = systemUserRepository.findSystemUserByUsername(username).orElse(null);
         if (selectedSystemUser != null) {
             throw new RuntimeException("用户名已存在");
         }
