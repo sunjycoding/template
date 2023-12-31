@@ -112,8 +112,8 @@ const handleSelectionChange = (selection) => {
       <div class="table-criteria">
         <el-row>
           <el-form :inline="true" :model="criteriaData" label-width="auto">
-            <el-form-item label="名称">
-              <el-input v-model="criteriaData.name" placeholder="名称" />
+            <el-form-item label="自定义">
+              <el-input v-model="criteriaData.name" placeholder="自定义" />
             </el-form-item>
             <el-form-item>
               <el-button @click="listTableData">查询</el-button>
@@ -129,24 +129,9 @@ const handleSelectionChange = (selection) => {
       <div class="table-wrapper">
         <el-table v-loading="tableLoading" @selection-change="handleSelectionChange" :data="tableData" stripe>
           <el-table-column type="selection" fixed="left" width="55" />
-          <el-table-column prop="name" label="名称" min-width="120" show-overflow-tooltip />
-          <el-table-column align="center" prop="type" label="类型" min-width="120" show-overflow-tooltip />
-          <el-table-column prop="path" label="路由" min-width="180" show-overflow-tooltip />
-          <el-table-column align="center" prop="icon" label="图标" show-overflow-tooltip>
-            <template #default="scope">
-              <el-icon>
-                <component :is="scope.row.icon" />
-              </el-icon>
-            </template>
-          </el-table-column>
-          <el-table-column prop="permissionTag" label="权限标识" min-width="120" show-overflow-tooltip />
-          <el-table-column align="center" prop="orderNum" label="排序" min-width="80" show-overflow-tooltip />
-          <el-table-column align="center" prop="enabled" label="启用状态" min-width="120" show-overflow-tooltip>
-            <template #default="scope">
-              <el-tag :type="scope.row.enabled ? '' : 'danger'">{{ scope.row.enabled ? '启用' : '禁用'
-                }}</el-tag>
-            </template>
-          </el-table-column>
+<#list propertyList as property>
+          <el-table-column prop="${property.name}" label="${property.comment}" min-width="120" show-overflow-tooltip />
+</#list>
           <el-table-column prop="lastModifiedBy" label="修改人" min-width="120" show-overflow-tooltip />
           <el-table-column prop="lastModifiedDate" label="修改时间" min-width="120" show-overflow-tooltip />
           <el-table-column prop="createdBy" label="创建人" min-width="120" show-overflow-tooltip />
@@ -155,12 +140,14 @@ const handleSelectionChange = (selection) => {
             <template #default="scope">
               <el-row justify="space-around">
                 <el-col :span="6">
-                  <el-button class="btn-update-text" size="small" @click="handleUpdate(scope.row)"
-                             text>修改</el-button>
+                  <el-button class="btn-update-text" size="small" @click="handleUpdate(scope.row)" text>
+                    修改
+                  </el-button>
                 </el-col>
                 <el-col :span="6">
-                  <el-button class="btn-delete-text" size="small" @click="handleDelete(scope.row)"
-                             text>删除</el-button>
+                  <el-button class="btn-delete-text" size="small" @click="handleDelete(scope.row)" text>
+                    删除
+                  </el-button>
                 </el-col>
               </el-row>
             </template>

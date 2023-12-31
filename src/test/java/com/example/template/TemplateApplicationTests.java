@@ -1,13 +1,10 @@
 package com.example.template;
 
 import com.example.template.common.service.FreemarkerTemplateService;
-import com.example.template.modules.codegen.dto.CodegenTableInfoDTO;
 import com.example.template.modules.codegen.service.CodegenService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 class TemplateApplicationTests {
@@ -22,7 +19,7 @@ class TemplateApplicationTests {
     void contextLoads() {
     }
 
-    final String controllerPath = "codegen/backend/ControllerTemplate.ftl";
+    final String controllerPath = "codegen/backend/Controller.ftl";
 
     @Test
     void test() {
@@ -41,12 +38,12 @@ class TemplateApplicationTests {
 //            System.out.println(e.getMessage());
 //        }
 
-        List<CodegenTableInfoDTO> codegenTableInfoDTOList = codegenService.listTableInfo();
-        System.out.println(codegenTableInfoDTOList);
-        codegenTableInfoDTOList.forEach(codegenTableInfoDTO -> {
-            String tableName = codegenTableInfoDTO.getName();
-            System.out.println("===" + codegenTableInfoDTO.getName() + "===");
-            System.out.println(codegenService.getColumnInfo(tableName));
-        });
+//        List<CodegenTableInfoDTO> codegenTableInfoDTOList = codegenService.listTableInfo();
+//        System.out.println(codegenTableInfoDTOList);
+//        codegenTableInfoDTOList.forEach(codegenTableInfoDTO -> {
+//            String tableName = codegenTableInfoDTO.getName();
+//            System.out.println("===" + codegenTableInfoDTO.getName() + "===");
+//            System.out.println(codegenService.getColumnInfo(tableName));
+//        });
     }
 }

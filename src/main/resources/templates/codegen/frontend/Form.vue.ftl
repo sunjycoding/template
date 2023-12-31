@@ -19,9 +19,13 @@ const operationType = computed(() => {
 const confirmLoading = ref(false)
 const formRef = ref(null)
 const formRules = {
-  name: [
-    { required: true, message: '请输入名称', trigger: 'blur' },
+<#list propertyList as property>
+<#if !property.nullable>
+    ${property.name}: [
+    { required: true, message: '请输入${property.comment}', trigger: 'blur' },
   ],
+</#if>
+</#list>
 }
 
 const handleClose = () => {
@@ -68,15 +72,18 @@ const handleConfirm = () => {
 <template>
   <el-dialog v-model="dialogVisible" :title="title" width="50%" :before-close="handleClose">
     <el-form class="two-column-form" ref="formRef" :model="formData" :rules="formRules" label-width="auto">
-      <el-form-item label="名称" prop="name">
-        <el-input placeholder="请输入名称" v-model="formData.name" />
+<#list propertyList as property>
+        <el-table-column prop="${property.name}" label="${property.comment}" min-width="120" show-overflow-tooltip />
+      <el-form-item label="${property.comment}" prop="${property.name}">
+        <el-input placeholder="请输入${property.comment}" v-model="formData.${property.name}" />
       </el-form-item>
+</#list>
     </el-form>
     <template #footer>
-            <span>
-                <el-button @click="handleCancel">取消</el-button>
-                <el-button @click="handleConfirm" :loading="confirmLoading">确定</el-button>
-            </span>
+        <span>
+            <el-button @click="handleCancel">取消</el-button>
+            <el-button @click="handleConfirm" :loading="confirmLoading">确定</el-button>
+        </span>
     </template>
   </el-dialog>
 </template>

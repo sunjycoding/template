@@ -11,7 +11,7 @@ spring:
     time-zone: GMT+8
   servlet:
     multipart:
-      location: /file
+      location: /Users/sunjy/Desktop/Repo
       max-file-size: 10MB
       max-request-size: 10MB
   freemarker:

@@ -59,3 +59,15 @@ VALUES ('120773d011ea4215a3c674bb57c808fd', '岗位管理', 'MENU', 'ac47a48d872
 INSERT INTO db_template.tb_system_menu (id, name, type, parent_id, path, icon, permission_tag, order_num, enabled)
 VALUES ('360473d295f649438744c1f499026472', '代码生成', 'MENU', 'ac47a48d8721421980f46195a9f889b5', '/system/codegen',
         'printer', null, 100, 1);
+
+DROP TABLE IF EXISTS tb_system_role;
+CREATE TABLE tb_system_role
+(
+    id                 VARCHAR(64) PRIMARY KEY COMMENT 'id',
+    name               VARCHAR(64) NOT NULL UNIQUE COMMENT '角色名称',
+    description        VARCHAR(255) COMMENT '角色描述',
+    created_by         VARCHAR(64) COMMENT '创建人',
+    created_date       DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    last_modified_by   VARCHAR(64) COMMENT '修改人',
+    last_modified_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
+) COMMENT '角色表';

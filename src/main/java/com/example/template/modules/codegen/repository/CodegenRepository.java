@@ -53,12 +53,21 @@ public class CodegenRepository {
     }
 
     @SuppressWarnings("unchecked")
+    public List<Object[]> getTable(String tableName) {
+        String sql = "SELECT TABLE_NAME, TABLE_COMMENT FROM information_schema.tables WHERE table_schema = DATABASE() " +
+                "AND TABLE_NAME = ?1";
+        Query query = entityManager.createNativeQuery(sql);
+        query.setParameter(1, tableName);
+        return query.getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
     public List<Object[]> findAllColumn(String tableName) {
         String sql = "SELECT COLUMN_NAME, DATA_TYPE, COLUMN_COMMENT, IS_NULLABLE, COLUMN_KEY " +
                 "FROM information_schema.COLUMNS " +
                 "WHERE TABLE_SCHEMA = DATABASE() " +
                 "AND TABLE_NAME = ?1 " +
-                "ORDER BY ORDINAL_POSITION;";
+                "ORDER BY ORDINAL_POSITION";
         Query query = entityManager.createNativeQuery(sql);
         query.setParameter(1, tableName);
         return query.getResultList();

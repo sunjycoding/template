@@ -5,6 +5,7 @@ import com.example.template.common.data.PaginationRequest;
 import com.example.template.modules.codegen.dto.CodegenTableColumnInfoDTO;
 import com.example.template.modules.codegen.dto.CodegenTableInfoCriteriaDTO;
 import com.example.template.modules.codegen.dto.CodegenTableInfoDTO;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.List;
 
@@ -19,4 +20,5 @@ public interface CodegenService {
 
     List<CodegenTableColumnInfoDTO> listColumnInfo(String tableName);
 
+    void generate(HttpServletResponse response, String tableName);
 }
